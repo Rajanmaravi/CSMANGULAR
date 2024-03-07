@@ -1,0 +1,55 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Update Batch</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Manage Batch</a></li>
+            <li class="breadcrumb-item active">Update Batch</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <section class="content p-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <form *ngIf="batch">
+            <div class="form-group">
+              <label for="batchName">Batch Name:</label>
+              <input type="text" id="batchName" [(ngModel)]="batch.batchName" name="batchName">
+            </div>
+            <div class="form-group">
+              <label for="batchCode">Batch Code:</label>
+              <input type="text" id="batchCode" [(ngModel)]="batch.batchCode" name="batchCode" readonly>
+            </div>
+            <div class="form-group">
+              <label for="year">Year:</label>
+              <input type="text" id="year" [(ngModel)]="batch.year" name="year" readonly>
+            </div>
+            <div class="form-group">
+              <label for="month">Month:</label>
+              <select id="month" [(ngModel)]="batch.month" name="month" [disabled]="true">
+                <option *ngFor="let month of months" [value]="month.value">
+                  {{ month.name }}
+                </option>
+              </select>
+            </div>
+           
+            <div class="form-group">       
+              <button class="btn btn-primary btnUpdateBatch" (click)="updateBatch()">Update</button>
+            </div>    
+          </form>
+        </div>
+
+      </div>
+      
+    </div>
+  </section>
+

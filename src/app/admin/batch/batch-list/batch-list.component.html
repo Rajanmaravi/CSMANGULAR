@@ -1,0 +1,61 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Batch List</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Manage Batch</a></li>
+            <li class="breadcrumb-item active">Batch List</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <section class="content p-2">
+    <div class="container-fluid">
+      <div class="row p-2">
+        <div class="col-md-10">
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+          autocomplete="off" placeholder="&#61442;  Start searching ...">
+        
+        </div>
+        <div class="col-md-2">
+          <a routerLink="createBatch" title="Add Batch" class="btn btn-dark float-end"><i class="fa fa-plus"></i></a>
+        </div>
+      </div>
+      
+      <div class="row">
+        <table class="table table-bordered table-hover p-2">
+          <caption></caption>
+          <thead>
+            <tr>
+              <th>Sno</th>
+              <th>Batch Code</th>
+              <th>Batch Name</th>
+              <th>Year</th>
+              <th>Month</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let batch of batches | filterpipe: searchText:['batchCode', 'batchName'];let i=index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ batch.batchCode }}</td>
+              <td>{{ batch.batchName }}</td>
+              <td>{{ batch.year }}</td>
+              <td>{{ batch.month }}</td>
+              <td>
+                <button class="btn btn-sm" title="edit" (click)="updateBatch(batch.id)"><i class="fa fa-edit text-info"></i></button>
+                <button class="btn btn-sm" title="delete" (click)="deleteBatch(batch)"><i class="fa fa-trash text-danger"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>

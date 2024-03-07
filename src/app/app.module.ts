@@ -1,8 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';  // Import FormsModule
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './_auth/auth.module';
+import { BatchModule } from './admin/batch/batch.module';
+import { TechnologyModule } from './admin/technology/technology.module';
+import { JseUserModule } from './admin/jse-user/jse-user.module';
+import { FeedbackModule } from './admin/feedback/feedback.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AdminModule } from './admin/admin.module';
+
 
 @NgModule({
   declarations: [
@@ -10,7 +18,12 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    AuthModule,
+    AdminModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

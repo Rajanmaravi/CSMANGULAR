@@ -1,0 +1,18 @@
+.container {
+    margin-top: 20px; /* Adjust the top margin as needed */
+  }
+  
+  .batch-container {
+    border: 1px solid #ddd; /* Border color */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px; /* Adjust the bottom margin as needed */
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .error-message {
+    color: red;
+  }

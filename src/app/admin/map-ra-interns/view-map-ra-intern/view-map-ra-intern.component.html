@@ -1,0 +1,68 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">RA-JSE Mapping List</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">RA-JSE Mapping</a></li>
+            <li class="breadcrumb-item active">Mapping List</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <section class="content p-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText"  autocomplete="off" placeholder="&#61442;  Start searching ...">
+        </div>
+        <div class="col-md-4" >
+          <button routerLink="create" title="Add JSE-RA Mapping" class="btn btn-dark float-end"><i class="fa fa-plus"></i></button>
+          
+        </div>
+      </div>
+      <div class="row pt-2">
+         <div class="col-md-12">
+          <table class="table table-bordered table-hover">
+            <caption></caption>
+            <thead>
+              <tr>
+                <th>Sno</th>
+                <th>Employee Code</th>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>RaName</th>
+                <th>Batch Name</th>
+                <th>Technology Name</th>
+                <th class="tblAction">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let jse of jseRaMapData |  filterpipe: searchText:['employeeCode', 'firstName','email','raName','batchName','technologyName'];let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ jse.employeeCode }}</td>
+                <td>{{ jse.firstName}}</td>
+                <td>{{ jse.email}}</td>
+                <td>{{ jse.raName }}</td>
+                <td>{{ jse.batchName }}</td>
+                <td>{{ jse.technologyName}}</td>
+                <td>
+                  <button class="btn btn-sm" title="edit" (click)="updateMapRAJseUser(jse.id)"><i class="fa fa-edit text-info"></i></button>
+                  <button class="btn btn-sm" title="delete" (click)="deleteMapRAJse(jse)"><i class="fa fa-trash text-danger"></i></button>
+                  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+         </div>
+      </div>
+    </div>
+  </section>
+
+  

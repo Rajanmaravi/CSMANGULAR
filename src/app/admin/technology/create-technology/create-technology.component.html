@@ -1,0 +1,62 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Add Technology</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Manage Technology</a></li>
+            <li class="breadcrumb-item active">Add Technology</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <section class="content p-2">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="batch-container">        
+            <form #createTechForm="ngForm" (ngSubmit)="createTechnology()" class="needs-validation" novalidate>
+              <div class="form-group row">
+                  <label for="technologyCode">Technology Code:</label>
+                    <div *ngIf="createTechForm.controls['technologyCode']?.errors?.['required'] && 
+                    (createTechForm.controls['technologyCode'].touched || createTechForm.controls['technologyCode'].dirty)" class="error-message">
+                        Technology Code is required.
+                    </div>
+                  <div class="col-sm-8">
+                    <input type="text" id="technologyCode" [(ngModel)]="technology.technologyCode" name="technologyCode" class="form-control" placeholder="Technology Code" required>
+                  
+                  </div>
+                </div>
+      
+                   <!-- Validation messages -->
+               
+                <div class="form-group row">
+                  <label for="technologyName">Technology Name:</label>
+                    <div *ngIf="createTechForm.controls['technologyName']?.errors?.['required'] && 
+                    (createTechForm.controls['technologyName'].touched || createTechForm.controls['technologyName'].dirty)" class="error-message">
+                        Technology Name is required.
+                    </div>
+                  <div class="col-sm-8">
+                    <input type="text" id="technologyName" [(ngModel)]="technology.technologyName" name="technologyName" class="form-control" placeholder="Technology Name" required>
+                   
+                  </div>
+                </div>
+                <br />
+  
+              
+    
+              <button type="submit" class="btn btn-primary" [disabled]="!createTechForm.valid">Create Technology</button>
+    
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+

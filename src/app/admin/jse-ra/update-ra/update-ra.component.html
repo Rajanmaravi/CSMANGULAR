@@ -1,0 +1,68 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Update Reporting Authority</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Manage RA</a></li>
+            <li class="breadcrumb-item active">Update Reporting Authority</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <section class="content p-2">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-8">
+            <form #raForm="ngForm" (ngSubmit)="updateRA()" class="needs-validation" novalidate>
+           
+
+              <div class="form-group">
+                <label for="raCode">Reporting Authority Code:</label>
+                <input type="text" id="raCode" [(ngModel)]="reporting.raCode" name="raCode" class="form-control" placeholder="RA Code" required>
+                      
+                    <div *ngIf="raForm.controls['raCode']?.hasError('required') && (raForm.controls['raCode']?.touched || raForm.controls['raCode']?.dirty)" class="error-message">
+                        Reporting Authority Code is required.
+                    </div>
+              </div>
+  
+             <div class="form-group">
+                <label for="raName">Reporting Authority Name:</label>
+                <input type="text" id="raName" [(ngModel)]="reporting.raName" name="raName" class="form-control" placeholder="RA Name" required>
+                <div *ngIf="raForm.controls['raName']?.hasError('required') && (raForm.controls['raName']?.touched || raForm.controls['raName']?.dirty)" class="error-message">
+                    Reporting Authority Name is required.
+                </div>
+            </div>
+             
+  
+             <div class="form-group">
+                <label for="raEmail">Reporting Authority Email:</label>
+                <input type="text" id="raEmail" [(ngModel)]="reporting.raEmail" name="raEmail" class="form-control" placeholder="raEmail" required>
+                <div *ngIf="raForm.controls['raEmail']?.hasError('required') && (raForm.controls['raEmail']?.touched || raForm.controls['raEmail']?.dirty)" class="error-message">
+                  Reporting Authority Email is required.
+                </div>
+            </div>
+  
+            <div class="form-group">
+                <label for="raPhone">Mobile:</label>
+                <input type="text" id="raPhone" [(ngModel)]="reporting.raPhone" name="raPhone" class="form-control" placeholder="raPhone" required>
+                <div *ngIf="raForm.controls['raPhone']?.hasError('required') && (raForm.controls['raPhone']?.touched || raForm.controls['raPhone']?.dirty)" class="error-message">
+                    Mobile is required.
+                </div>
+            </div><br/>
+           
+              
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" [disabled]="!raForm.valid">Create RA</button>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+  </section>

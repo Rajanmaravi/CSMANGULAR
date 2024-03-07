@@ -1,0 +1,68 @@
+/* your-component.component.css */
+.container-fluid {
+    margin: auto;
+    padding: 20px;
+    width: 100%; 
+}
+
+  h2 {
+    color: #333;
+  }
+  
+  .tbl {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  .tbl-border {
+    border-collapse: collapse;
+    border: 1px solid #ddd; /* Add borders to the entire table */
+  }
+  
+  .tbl-border th, .tbl-border td {
+    border: 1px solid #ddd; /* Add borders to all td and th elements */
+    padding: 8px; /* Add padding for better visual appearance */
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS devices */
+  }
+  
+
+  .create-button {
+    padding: 7px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+.delete-button,
+.update-button {
+  display: inline-block; 
+  margin-right: 2px;
+  padding: 1px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #ff4d4d; 
+}
+
+.update-button {
+  background-color: #ffcc00; 
+}
+
+.button-container{
+    margin-left: 300px;
+}
+
+.tblAction{
+  width: 150px !important;
+}
+
+  

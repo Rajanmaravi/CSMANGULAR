@@ -1,0 +1,12 @@
+/* Add styles to center the container and give it some spacing */
+.upload-container {
+    align-items: center;
+    justify-content: center;
+    margin: 100px;
+    text-align: center;
+    background-color: white;
+
+  }
+  
+
+  

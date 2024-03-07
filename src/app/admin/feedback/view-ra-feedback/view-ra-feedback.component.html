@@ -1,0 +1,122 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Feedback List</h1>
+        </div><!-- /.col -->
+      
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <section class="content p-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <form #feedbackListForm="ngForm" (ngSubmit)="getRaFeedback(internUser.raCode)"  class="needs-validation" novalidate>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="raCode">Select Reporting Authority Name:</label>
+                                <select id="raCode" [(ngModel)]="internUser.raCode" name="raCode" class="form-control"  required>
+                                    <option *ngFor="let ra of raList" [value]="ra.raCode">{{ ra.raName }}</option>
+                                </select>
+                                
+                            </div>
+                        </div>    
+                        <div class="col-md-6" style="margin-top: 30px;">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" [disabled]="!feedbackListForm.valid">RA Feedback</button>
+                              </div>
+                        </div>               
+                    </div>         
+                  </form>
+            </div>
+
+        </div>
+    </div>
+  </section>
+
+  <section class="content p-2">
+    <div class="container-fluid">
+      <div class="row p-2">
+        <!-- <div class="col-md-10">
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+          autocomplete="off" placeholder="&#61442;  Start searching ...">
+        
+        </div> -->
+      </div>
+      
+      <div class="row">
+        <table class="table table-bordered table-hover p-2">
+          <caption></caption>
+          <thead>
+            <tr>
+              <th>Sno</th>
+              <th>Project Name</th>
+              <th>Mobile</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Ra Name</th>
+              <th>Total Rating</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let feed of feedbackList | filterpipe: searchText:['ProjectName', 'FirstName'];let i=index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ feed.projectName }}</td>
+              <td>{{ feed.mobile }}</td>
+              <td>{{ feed.firstName  }}</td>
+              <td>{{feed.lastName}}</td>
+              <td>{{feed.raName}}</td>
+              <td>{{feed.totalRating}}</td>
+              <td>
+                <button class="btn btn-primary"  data-bs-toggle="modal" href="#detailsModal" (click)="getFeedbackDatails(feed);">Get Details</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal fade" id="detailsModal" aria-hidden="true" aria-labelledby="detailsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Details of {{employeeName}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <div *ngIf="feedbackDetails && feedbackDetails.length > 0">
+                <table class="table table-bordered table-hover">
+                  <caption></caption>
+                  <thead>
+                    <tr>
+                      <th>Sno</th>
+                      <th>Feedback Name</th>
+                      <th>Rating</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of feedbackDetails; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ data.feedbackName }}</td>
+                      <td>{{ data.rating }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    
+      </div>
+    </div>
+  </div>
+
+
+
+       

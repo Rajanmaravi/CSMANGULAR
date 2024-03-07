@@ -1,0 +1,74 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Create Batch</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Create Batch</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <section class="content p-2">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="batch-container">
+            <form [formGroup]="createBatchForm" (ngSubmit)="createBatch()" class="needs-validation" novalidate>
+  
+              <div class="form-group">
+                  <label for="batchCode">Batch Code:</label>
+                  <input type="text" id="batchCode" formControlName="batchCode" class="form-control" placeholder="Batch Code" required>
+                  <div *ngIf="createBatchForm.get('batchCode').hasError('required') && 
+                       (createBatchForm.get('batchCode').touched || createBatchForm.get('batchCode').dirty)" class="error-message">
+                     Batch Code is required.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="year">Year:</label>
+                  <select id="year" formControlName="year" class="form-control" required>
+                    <option [value]="2023">2023</option>
+                    <option [value]="2024">2024</option>
+                    <option [value]="2025">2025</option>
+                  </select>
+                  <div *ngIf="createBatchForm.get('year').hasError('required') && 
+                       (createBatchForm.get('year').touched || createBatchForm.get('year').dirty)" class="error-message">
+                    Year is required.
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="month">Month:</label>
+                  <select id="month" formControlName="month" class="form-control" required>
+                    <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+                  </select>
+                  <div *ngIf="createBatchForm.get('month').hasError('required') && 
+                       (createBatchForm.get('month').touched || createBatchForm.get('month').dirty)" class="error-message">
+                    Month is required.
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="batchName">Batch Name:</label>
+                  <input type="text" id="batchName" formControlName="batchName" class="form-control" placeholder="Batch Name" required>
+                  <div *ngIf="createBatchForm.get('batchName').hasError('required') && 
+                       (createBatchForm.get('batchName').touched || createBatchForm.get('batchName').dirty)" class="error-message">
+                     Batch Name is required.
+                  </div>
+                </div>
+                <br/>
+  
+                <button type="submit" class="btn btn-primary" [disabled]="!createBatchForm.valid">Create Batch</button>
+  
+            </form>
+          </div>
+      </div>
+    </div>
+    </div>
+  </section>

@@ -1,0 +1,71 @@
+<div class="hold-transition login-page bg-gray ">
+  <div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center text-success text-bold">
+           
+        WELCOME TO JSE FEEDBACK SYSTEM
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg text-bold">LOGIN</p>
+  
+        <form (ngSubmit)="login()" [formGroup]="loginForm">
+         
+          <div class="input-group mb-3">          
+            <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="User ID" required>                         
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>  
+                    
+          </div>
+          <span *ngIf="loginForm.get('userName').hasError('required') && 
+          (loginForm.get('userName').touched || loginForm.get('userName').dirty)" class="error-message">
+          * User ID is required.
+        </span> 
+          
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <p *ngIf="loginForm.get('password').hasError('required') && 
+          (loginForm.get('password').touched || loginForm.get('password').dirty)" class="error-message">
+          * Password is required.
+        </p>
+                 <div class="row">
+            <div class="col-8">
+              <div class="icheck-primary">
+                <input type="checkbox" id="remember">
+                <label for="remember">
+                  Remember Me
+                </label>
+              </div>
+            </div> 
+            <!-- /.col -->
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid">Sign In</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+  
+       
+  
+        <p class="mb-1">
+          <a href="#" class="">Forgot Password ?</a>
+        </p>
+        <p class="mb-0">
+          <a [routerLink]="['/register']" class="text-center">Register</a>
+        </p>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+</div>
+  

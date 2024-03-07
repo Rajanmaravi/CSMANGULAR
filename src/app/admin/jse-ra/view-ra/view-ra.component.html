@@ -1,0 +1,60 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Reporting Authority List</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Manage RA</a></li>
+            <li class="breadcrumb-item active">Reporting Authority List</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <section class="content p-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+          autocomplete="off" placeholder="&#61442;  Start searching ...">
+        
+        </div>
+        <div class="col-md-4">
+          <button routerLink="createra" title="Create Reporting Authority" class="btn btn-dark float-end"><i class="fa fa-plus"></i></button>
+        </div>
+      </div>
+      <div class="row p-2">
+        <table class="table table-bordered table-hover p-2">
+          <caption></caption>
+          <thead>
+            <tr>
+              <th>Sno</th>
+              <th>RA Code</th>
+              <th>RA Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ra of reporting | filterpipe: searchText:['raCode', 'raName','raEmail'];let i=index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ ra.raCode }}</td>
+              <td>{{ ra.raName }}</td>
+              <td>{{ ra.raEmail }}</td>
+              <td>{{ ra.raPhone }}</td>
+              <td>
+                <button class="btn btn-sm" title="edit" (click)="updateReporting(ra.id)"><i class="fa fa-edit text-info"></i></button>
+                <button class="btn btn-sm" title="delete" (click)="deleteReporting(ra)" ><i class="fa fa-trash text-danger"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>

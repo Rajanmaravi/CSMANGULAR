@@ -1,0 +1,139 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">MAP RA-JSE</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">RA-JSE Mapping</a></li>
+            <li class="breadcrumb-item active">Map RA-JSE</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <section class="content p-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <form #interForm="ngForm" (ngSubmit)="mapRaInternDetails()" class="needs-validation" novalidate>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="raCode">Reporting Authority Name:</label>
+                                <select id="raCode" [(ngModel)]="internUser.raCode" name="raCode" class="form-control" (change)="updateRaEmail()" required>
+                                    <option *ngFor="let ra of raList" [value]="ra.raCode">{{ ra.raName }}</option>
+                                </select>
+                                <div *ngIf="interForm.controls['raCode']?.hasError('required') && (interForm.controls['raCode']?.touched || interForm.controls['raCode']?.dirty)" class="error-message">
+                                    Reporting Authority name is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="raEmail">Reporting Authority Email:</label>
+                                <input type="text" id="raEmail" [(ngModel)]="internUser.raEmail" name="raEmail" class="form-control" placeholder="RaEmail" required>
+                                <div *ngIf="interForm.controls['raEmail']?.hasError('required') && (interForm.controls['raEmail']?.touched || interForm.controls['raEmail']?.dirty)" class="error-message">
+                                    Reporting Authority Email is required.
+                                </div>
+                            </div>        
+                        </div>
+                    </div>
+        
+                   <div class="row">
+                     <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="employeeCode">Employee Code:</label>
+                            <select id="employeeCode" [(ngModel)]="internUser.employeeCode" name="employeeCode" (change)="updateEmpDetails()" class="form-control" required>
+                              <option *ngFor="let employee of employeeOptions" [value]="employee.employeeCode">{{ employee.empFullName}}</option>
+                            </select>
+                            <div *ngIf="interForm.controls['employeeCode']?.hasError('required') && (interForm.controls['employeeCode']?.touched || interForm.controls['employeeCode']?.dirty)" class="error-message">
+                              Employee Code is required.
+                            </div>
+                        </div>
+                        <div class="col-md-6" hidden>
+                            <div class="form-group">
+                                <label for="firstName">First Name:</label>
+                                <input type="text" id="firstName" [(ngModel)]="internUser.firstName" name="firstName" class="form-control" placeholder="First Name">
+                              </div>
+                        </div>
+                     </div>
+                   </div>
+                    <div class="row" hidden>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="middleName">Middle Name:</label>
+                                <input type="text" id="middleName" [(ngModel)]="internUser.middleName" name="middleName" class="form-control" placeholder="Middle Name">
+                              </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastName">Last Name:</label>
+                                <input type="text" id="lastName" [(ngModel)]="internUser.lastName" name="lastName" class="form-control" placeholder="Last Name" required>
+                                <div *ngIf="interForm.controls['lastName']?.hasError('required') && (interForm.controls['lastName']?.touched || interForm.controls['lastName']?.dirty)" class="error-message">
+                                    Last Name is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="text" id="email" [(ngModel)]="internUser.email" name="email" class="form-control" placeholder="Email" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="mobile">Mobile:</label>
+                                <input type="text" id="mobile" [(ngModel)]="internUser.mobile" name="mobile" class="form-control" placeholder="Mobile" required readonly>
+                                <div *ngIf="interForm.controls['mobile']?.hasError('required') && (interForm.controls['mobile']?.touched || interForm.controls['mobile']?.dirty)" class="error-message">
+                                    Mobile is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="batchId">Select Batch:</label>
+                                <select id="batchId" [(ngModel)]="internUser.batchId" name="batchId" class="form-control" required [disabled]="true">
+                                  <option *ngFor="let batch of batches" [value]="batch.id">{{ batch.batchName }}</option>
+                                </select>
+                                <div *ngIf="interForm.controls['batchId']?.hasError('required') && (interForm.controls['batchId']?.touched || interForm.controls['batchId']?.dirty)" class="error-message">
+                                    Batch Name is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="technologyId">Select Technology:</label>
+                                <select id="technologyId" [(ngModel)]="internUser.technologyId" name="technologyId" class="form-control" required [disabled]="true">
+                                  <option *ngFor="let tech of technologies" [value]="tech.id">{{ tech.technologyName }}</option>
+                                </select>
+                                <div *ngIf="interForm.controls['technologyId']?.hasError('required') && (interForm.controls['technologyId']?.touched || interForm.controls['technologyId']?.dirty)" class="error-message">
+                                    Technology is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div><br/>
+        
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary" [disabled]="!interForm.valid">Map Reporting Authority</button>
+                    </div>
+                  </form>
+            </div>
+
+        </div>
+    </div>
+  </section>
+
+  
+

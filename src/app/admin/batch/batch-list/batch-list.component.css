@@ -1,0 +1,36 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .search-container {
+    display: flex;
+  }
+  
+  .search-container input {
+    margin-right: 10px;
+  }
+  
+  .create-button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .create-button:hover {
+    background-color: #45a049;
+  }
+  
+  .delete-button {
+    background-color: #ff5252; /* Red color for delete button */
+    color: #ffffff; /* White text color */
+    margin-right: 5px; /* Add margin to create space between buttons */
+  }
+  
+  .update-button {
+    background-color: #ffd700; /* Yellow color for update button */
+    color: #000000; /* Black text color */
+  }
+  

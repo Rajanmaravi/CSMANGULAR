@@ -1,0 +1,21 @@
+/* login.component.css */
+
+.container {
+    margin-top: 170px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 700px; 
+  }
+  
+  
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .error-message {
+    color: red;
+  }
+  
