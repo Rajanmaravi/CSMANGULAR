@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Year, Month ,MonthOption, getMonthOptions} from '../../../_dto/base-enum';
+import { Year, Month ,MonthOption, getMonthOptions, FiscalYear} from '../../../_dto/base-enum';
 import Swal from 'sweetalert2';
 import { BatchService } from '../batch.service';
 
@@ -16,6 +16,8 @@ export class CreateBatchComponent implements OnInit {
   createBatchForm: FormGroup |any;
   months: MonthOption[];
 
+  fiscalYears = Object.keys(FiscalYear).map(key => ({ value: key, label: (FiscalYear as any)[key] }));
+  
   constructor(
      private formBuilder: FormBuilder,
      private batchService:BatchService,
@@ -45,7 +47,7 @@ export class CreateBatchComponent implements OnInit {
           text: 'Batch has been created successfully!',
         });
         this.createBatchForm.reset();
-        //this.router.navigate(['login']);
+        this.router.navigate(['map/batch']);
       },
       error: (error) => {
         console.error('Registration failed', error);

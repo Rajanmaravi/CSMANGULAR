@@ -9,6 +9,8 @@ import { AdminComponent } from './admin.component';
 import { BatchModule } from './batch/batch.module';
 import { TechnologyModule } from './technology/technology.module';
 import { JseUserModule } from './jse-user/jse-user.module';
+import { OffBoardingModule } from './off-boarding/off-boarding.module';
+import { AssessmentModule } from './assessment/assessment.module';
 
 
 
@@ -26,6 +28,8 @@ import { JseUserModule } from './jse-user/jse-user.module';
     TechnologyModule,
     JseUserModule,
     FeedbackModule,
+    OffBoardingModule,
+    AssessmentModule
   ]
 })
 export class AdminModule { }

@@ -32,7 +32,7 @@ export class TechnologyListComponent implements OnInit {
       })
   }
 
-  deleteTechnology(batch: any) {
+  deleteTechnology(tech: any) {
     // Show confirmation dialog
     Swal.fire({
       title: 'Are you sure?',
@@ -45,7 +45,7 @@ export class TechnologyListComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         // User clicked "Yes, delete it!"
-        this.technologyService.deleteTechnology(batch).subscribe({
+        this.technologyService.deleteTechnology(tech).subscribe({
           next: (response) => {
             debugger
             console.log(response);
@@ -92,12 +92,12 @@ export class TechnologyListComponent implements OnInit {
          const queryParams = {
            techData: encodeURIComponent(JSON.stringify({
              isActive: techToUpdate.isActive,
-             technologyCode: techToUpdate.technologyCode,
+             id: techToUpdate.id,
              technologyName: techToUpdate.technologyName
            }))
          };
    
-         this.router.navigate(['/technology/techUpdate'], { queryParams });
+         this.router.navigate(['map/technology/techUpdate'], { queryParams });
        } else {
          console.error('Batch not found for ID:', id);
        }      

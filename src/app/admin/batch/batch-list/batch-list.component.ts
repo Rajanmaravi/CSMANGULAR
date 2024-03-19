@@ -3,6 +3,7 @@ import { BatchService } from '../batch.service';
 import { Batch, BatchSearchModel } from '../../../_dto/batch-dao-model';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MONTHS, MonthOption } from '../../../_dto/base-enum';
 
 
 @Component({
@@ -13,6 +14,7 @@ import Swal from 'sweetalert2';
 export class BatchListComponent implements OnInit {
 
   batches: Batch[] = [];
+  months = MONTHS;
   
    searchText: string = '';
   constructor(private batchService:BatchService, private router:Router){}
@@ -32,6 +34,16 @@ export class BatchListComponent implements OnInit {
       }
     });
   }
+
+  getMonthName(monthNumber: number): string {
+    debugger;
+    const month = this.months.find(m => m.value === Number(monthNumber));
+    console.log("Found month:", month);
+  
+    return month ? month.name : '';
+  }
+  
+  
 
   deleteBatch(batch: any) {
     // Show confirmation dialog
@@ -96,7 +108,7 @@ export class BatchListComponent implements OnInit {
         }))
       };
 
-      this.router.navigate(['/batch/updateBatch'], { queryParams });
+      this.router.navigate(['map/batch/updateBatch'], { queryParams });
     } else {
       console.error('Batch not found for ID:', id);
     }

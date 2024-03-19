@@ -15,19 +15,56 @@
    </div><!-- /.container-fluid -->
  </div>
  <!-- /.content-header -->
+
+
  <section class="content p-2">
-   <div class="container-fluid">
-      <div class="row">
-         <div class="col-md-9">
-            <input type="file" (change)="onFileSelected($event)" />
-            <button (click)="onUpload()"  class="btn btn-secondary mb-2">Upload</button>
-         </div>
-         <div class="col-md-3">
-            <button (click)="generateExcel()" class="btn btn-secondary mb-2"> Export Excel</button>
-         </div>
-      </div>
-   </div>
- </section>
+  <div class="container-fluid">
+       <div class="row">
+            <div class="col-md-10">
+              <form #interForm="ngForm" (ngSubmit)="uploadIntern()" class="needs-validation" novalidate>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="batchId">Select Batch:</label>
+                      <select id="batchId" [(ngModel)]="internUser.batchId" name="batchId" class="form-control" required>
+                        <option *ngFor="let batch of batches" [value]="batch.id">{{ batch.batchName }}</option>
+                      </select>
+                      <div *ngIf="interForm.controls['batchId']?.hasError('required') && (interForm.controls['batchId']?.touched || interForm.controls['batchId']?.dirty)" class="error-message">
+                        Batch Name is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <button (click)="generateExcel()" class="btn btn-secondary mb-2">Download JSE Data</button>
+                  </div>
+                  <div class="col-md-3">
+                    <button (click)="generateTemplate()" class="btn btn-secondary mb-2">Download Template</button>
+                  </div>
+                </div>
+              
+                <br/>
+              
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="formId">Select File:</label>
+                      <input type="file" id="formId" name="formId" (change)="onFileSelected($event)" required />
+                      <div *ngIf="interForm.controls['formId']?.hasError('required') && (interForm.controls['formId']?.touched || interForm.controls['formId']?.dirty)" class="error-message">
+                        Form is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary" [disabled]="!interForm.valid">Upload</button>
+                  </div>
+                </div>
+              </form>
+              
+            </div>
+       </div>
+  </div>
+</section>
+
 
 
 

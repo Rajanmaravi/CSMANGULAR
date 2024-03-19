@@ -10,6 +10,8 @@ import { RequestFeedbackComponent } from './request-feedback/request-feedback.co
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CreateRaFeedbackComponent } from './create-ra-feedback/create-ra-feedback.component';
 import { ViewRaFeedbackComponent } from './view-ra-feedback/view-ra-feedback.component';
+import { ConformRaFeedbackComponent } from './conform-ra-feedback/conform-ra-feedback.component';
+import { ValidatedRaFeedbackComponent } from './validated-ra-feedback/validated-ra-feedback.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { ViewRaFeedbackComponent } from './view-ra-feedback/view-ra-feedback.com
     RequestFeedbackComponent,
     CreateRaFeedbackComponent,
     ViewRaFeedbackComponent,
+    ConformRaFeedbackComponent,
+    ValidatedRaFeedbackComponent,
   ],
   imports: [
     CommonModule,

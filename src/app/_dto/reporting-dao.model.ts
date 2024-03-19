@@ -87,18 +87,25 @@ export interface MapJseToRaUpdate {
 }
 
 export class UserFeedback {
-  raCode:string;
+  raCode: string;
   employeeCode: string;
   isLogger: string;
-  aspectRatings: { [key: number]: number };  // Define 'aspectRatings' property
+  reviewerComments?: string;
+  aspectRatings: { [key: number]: number };
 
-  constructor(data: {raCode:string; employeeCode: string; isLogger: string; aspectRatings: { [key: number]: number } }) {
+  constructor(data: {
+    raCode: string;
+    employeeCode: string;
+    isLogger: string;
+    reviewerComments?: string;  // Make it optional
+    aspectRatings: { [key: number]: number };
+  }) {
     this.employeeCode = data.employeeCode;
     this.raCode = data.raCode;
     this.isLogger = data.isLogger;
+    this.reviewerComments = data.reviewerComments;
     this.aspectRatings = data.aspectRatings;
   }
-
 }
 
 export interface FeedbackByRaCode{

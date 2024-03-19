@@ -78,7 +78,7 @@ export class CreateMapRaInternComponent implements OnInit {
            title: 'Map RA Intern successfully',
            text: 'Map RA Intern has been successfully!',
          });
-         this.router.navigate(['mapra']);
+         this.router.navigate(['map/mapra']);
        },
        error: (error) => {
          console.error('Intern Registration failed', error);
@@ -121,7 +121,7 @@ export class CreateMapRaInternComponent implements OnInit {
 
   getJseUser()
   {
-     this.jseUserService.getJseUserDetails().subscribe({
+     this.jseUserService.getJseUser().subscribe({
       next:(response)=>{
         console.log('data::', response);
         this.employeeOptions = response;

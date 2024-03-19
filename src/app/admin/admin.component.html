@@ -1,7 +1,7 @@
 <div class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
     <!-- Preloader -->
-    <div
+    <!-- <div
       class="preloader flex-column justify-content-center align-items-center"
     >
       <img
@@ -11,7 +11,7 @@
         height="60"
         width="60"
       />
-    </div>
+    </div> -->
 
     <!-- Navbar -->
     <nav
@@ -33,7 +33,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4" aria-label="">
       <!-- Brand Logo -->
-      <a routerLink="['/admin']" class="brand-link">
+      <a routerLink="/admin/map/dashboard" style="cursor: pointer" class="brand-link">
         <img
           src="assets/dist/img/CSM.png"
           alt="AdminLTE Logo"
@@ -54,7 +54,7 @@
             data-accordion="false"
           >
             <li class="nav-item menu-open pb-3">
-              <a routerLink="['/admin']" class="nav-link active">
+              <a routerLink="/admin/map/dashboard" style="cursor: pointer" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Admin Dashboard
@@ -66,7 +66,7 @@
               <a
                 class="nav-link"
                 data-toggle="collapse"
-                [routerLink]="['/admin/technology']"
+                [routerLink]="['/admin/map/technology']"
                 style="cursor: pointer"
               >
                 <i class="nav-icon fas fa-desktop"></i>
@@ -80,7 +80,7 @@
               <a
                 class="nav-link"
                 data-toggle="collapse"
-                [routerLink]="['/admin/batch']"
+                [routerLink]="['/admin/map/batch']"
                 style="cursor: pointer"
               >
                 <i class="nav-icon fas fa-users"></i>
@@ -94,21 +94,7 @@
               <a
                 class="nav-link"
                 data-toggle="collapse"
-                [routerLink]="['/admin/jsera']"
-                style="cursor: pointer"
-              >
-                <i class="nav-icon fas fa-user"></i>
-                <p>
-                  Manage RA
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                data-toggle="collapse"
-                [routerLink]="['/admin/intern']"
+                [routerLink]="['/admin/map/intern']"
                 style="cursor: pointer"
               >
                 <i class="nav-icon fas fa-user"></i>
@@ -123,7 +109,7 @@
               <a
                 class="nav-link"
                 data-toggle="collapse"
-                [routerLink]="['/admin/intern/uploadintern']"
+                [routerLink]="['/admin/map/intern/uploadintern']"
                 style="cursor: pointer"
               >
                 <i class="nav-icon fas fa-upload"></i>
@@ -137,7 +123,49 @@
               <a
                 class="nav-link"
                 data-toggle="collapse"
-                [routerLink]="['/admin/mapra']"
+                [routerLink]="['/admin/map/offboard']"
+                style="cursor: pointer"
+              >
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Off Boarding Jse
+              </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-toggle="collapse"
+                [routerLink]="['/admin/map/assessment']"
+                style="cursor: pointer"
+              >
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Assessment
+              </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-toggle="collapse"
+                [routerLink]="['/admin/map/jsera']"
+                style="cursor: pointer"
+              >
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Manage RA
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-toggle="collapse"
+                [routerLink]="['/admin/map/mapra']"
                 style="cursor: pointer"
               >
                 <i class="nav-icon fas fa-link"></i>
@@ -151,7 +179,7 @@
               <a
                 class="nav-link"
                 data-toggle="collapse"
-                [routerLink]="['/admin/feedback']"
+                [routerLink]="['/admin/map/feedback']"
                 style="cursor: pointer"
               >
                 <i class="nav-icon fas fa-comment"></i>
@@ -162,7 +190,7 @@
             </li>
 
             <li class="nav-item"> 
-              <a class="nav-link" data-toggle="collapse"  [routerLink]="['/admin/feedback/view']" style="cursor: pointer;">
+              <a class="nav-link" data-toggle="collapse"  [routerLink]="['/admin/map/feedback/view']" style="cursor: pointer;">
                 <i class="nav-icon fas fa-copy"></i>
                  <p>
                    View Feedback
@@ -172,11 +200,11 @@
               </a>                 
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a
                 class="nav-link"
                 data-toggle="collapse"
-                [routerLink]="['/admin/feedback']"
+                [routerLink]="['/admin/map/feedback']"
                 style="cursor: pointer"
               >
                 <i class="nav-icon fas fa-copy"></i>
@@ -184,22 +212,27 @@
                   Report
                 </p>
               </a>
-            </li>
+            </li> -->
 
             <li class="nav-item"> 
               <a class="nav-link"  data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="cursor: pointer;">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
-                  Demo
+                  Report
                   <i class="fas fa-angle-left right"></i>
                   <span class="badge badge-info right"></span>
                 </p>
               </a>
               <ul class="nav nav-treeview collapse" id="collapseExample">
                 <li class="nav-item">
-                  <a href="pages/layout/top-nav.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add</p>
+                    <a
+                    class="nav-link"
+                    data-toggle="collapse"
+                    [routerLink]="['/admin/map/report/assessment']"
+                    style="cursor: pointer"
+                    >
+                    <i class="nav-icon fas fa-comment"></i>
+                    <p>Assessment</p>
                   </a>
                 </li>
                 <li class="nav-item">

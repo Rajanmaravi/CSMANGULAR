@@ -19,33 +19,21 @@ export class RequestFeedbackComponent implements OnInit {
   searchText = '';
 
   feedbackIntern = {
-    employeeCode:'',
-    firstName:'',
-    middleName:'',
-    lastName:'',
-    email:'',
-    mobile:'',
     raCode:'',
     raEmail:'',
-    pmCode:'',
-    projectName:'',
-    batchId:0,
-    batchCode:'',
-    batchName:'',
-    technologyId:0,
-    technologyName:'',
-    technologyCode:'',
-    empFullName:'',
+    raFullName:''
   } 
 
   feedbackInternForm = {
-    employeeCode: [] as string[],
-    empFullName:[] as string[],
+    // employeeCode: [] as string[],
+    // empFullName:[] as string[],
+    raCode: [] as string[],
+    raFullName:[] as string[],
   } 
   
   dropdownSettings: IDropdownSettings = {};
-  selectedEmployeeCodes: string[] = [];
-  employeeCodes:string[] = [];
+  selectedReportingAuthorityCodes: string[] = [];
+  raCodes:string[] = [];
 
   constructor(
     private jseUserService:JseUserService,
@@ -69,17 +57,21 @@ export class RequestFeedbackComponent implements OnInit {
 
   getMapRaJseUsers()
    {
-     this.jseUserService.getJseUserDetails().subscribe({
-      next: (response) => {
-        console.log('response',response);
-        this.feedbackIntern = response;
-        // this.feedbackIntern = response.map((user: { employeeCode: any; empFullName: any; }) => ({
-        //   employeeCode: user.employeeCode,
-        //   empFullName: user.empFullName,
-          
-        // }));
-        this.feedbackInternForm.employeeCode = response.map((user: { employeeCode: any; }) => user.employeeCode);
-        this.feedbackInternForm.empFullName = response.map((user: { empFullName: any; }) => user.empFullName);
+
+    //  this.jseUserService.getJseUserDetails().subscribe({
+    //   next: (response) => {
+    //     console.log('response',response);
+    //     this.feedbackIntern = response;
+    //      this.feedbackInternForm.employeeCode = response.map((user: { employeeCode: any; }) => user.employeeCode);
+    //      this.feedbackInternForm.empFullName = response.map((user: { empFullName: any; }) => user.empFullName);
+    //   }
+    //  })
+
+     this.feedbackService.GetMapRA().subscribe({
+      next:(response) =>{
+          this.feedbackIntern = response;
+          this.feedbackInternForm.raCode = response.map((user: { raCode: any; }) => user.raCode);
+         this.feedbackInternForm.raFullName = response.map((user: { raFullName: any; }) => user.raFullName);
       }
      })
    }
@@ -87,34 +79,24 @@ export class RequestFeedbackComponent implements OnInit {
 
    feedbackRequest(): void 
    {
+    debugger;
       let emailData: any[] = [];
-      console.log('Selected Employee Codes:', this.selectedEmployeeCodes);
+      console.log('Selected RA Codes:', this.selectedReportingAuthorityCodes);
       debugger;
 
       if (Array.isArray(this.feedbackIntern))
       {
         const selectedRecords: any[] = this.feedbackIntern.filter((record: any) =>
-          this.employeeCodes.includes(record.employeeCode)
+          this.raCodes.includes(record.raCode)
         );  
         //console.log('Selected Records:', selectedRecords);
 
         selectedRecords.forEach((feedbackData: any) => {
           const formattedData = {
             loggedInUser: localStorage.getItem('userCode') || '',
-            employeeCode: feedbackData.employeeCode,
-            firstName: feedbackData.firstName,
-            middleName: feedbackData.middleName,
-            lastName: feedbackData.lastName,
-            email: feedbackData.email,
-            mobile: feedbackData.mobile,
             raCode: feedbackData.raCode,
             raEmail: feedbackData.raEmail,
-            pmCode: feedbackData.pmCode,
-            projectName: feedbackData.projectName,
-            batchCode: feedbackData.batchCode,
-            batchName: feedbackData.batchName,
-            technologyName: feedbackData.technologyName,
-            technologyCode: feedbackData.technologyCode,
+            //raFullName:feedbackData.raFullName
           };
       
           emailData.push(formattedData);
@@ -133,7 +115,7 @@ export class RequestFeedbackComponent implements OnInit {
                   title: 'Feedback mail send successfully',
                   text: 'Feedback mail has been sent successfully!',
                 });
-                this.router.navigate(['feedback']);
+                this.router.navigate(['map/feedback']);
               },
             error: (error) => 
             {
@@ -170,12 +152,12 @@ export class RequestFeedbackComponent implements OnInit {
   }
 
   extractEmployeeCodes() {
-    this.employeeCodes = this.selectedEmployeeCodes.map(empCode => {
-      const matches = empCode.match(/\((.*?)\)/);
+    this.raCodes = this.selectedReportingAuthorityCodes.map(raCode => {
+      const matches = raCode.match(/\((.*?)\)/);
       return matches && matches.length > 1 ? matches[1] : '';
     });
 
-    console.log('Employee Codes:', this.employeeCodes);
+    console.log('RA Codes:', this.raCodes);
   }
 
 }

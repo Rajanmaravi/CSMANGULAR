@@ -66,5 +66,10 @@ export class FeedbackService {
     return this.http.post<any>(`${this.rootUrl}/api/RAFeedback/GetRAFeedback`,data);
   }
 
+  GetMapRA():Observable<any>{
+    debugger;
+    return this.http.get<any>(`${this.rootUrl}/api/ReportingAuthority/GetMapRACode`);
+  }
+
   
 }

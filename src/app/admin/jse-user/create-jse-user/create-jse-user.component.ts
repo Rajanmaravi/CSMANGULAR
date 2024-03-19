@@ -27,12 +27,6 @@ export class CreateJseUserComponent implements OnInit {
     lastName: '',
     email: '',
     mobile: '',
-    // raCode: '',
-    // raEmail: '',
-    pmCode: '',
-    pmEmail: '',
-    location: '',
-    projectName: '',
     batchId: 0,
     technologyId: 0
   };
@@ -57,12 +51,6 @@ export class CreateJseUserComponent implements OnInit {
         lastName: ['',Validators.required],
         email: ['', [Validators.required, Validators.email]],
         mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-        raCode: ['',Validators.required],
-        raEmail: ['', [Validators.required, Validators.email]],
-        pmCode: ['',Validators.required],
-        pmEmail: ['', Validators.email],
-        location: ['',Validators.required],
-        projectName: ['', Validators.required],
         batchId: ['', Validators.required],
         technologyId: ['', Validators.required],
       });
@@ -112,7 +100,7 @@ export class CreateJseUserComponent implements OnInit {
           text: 'Intern has been created successfully!',
         });
 
-        this.router.navigate(['/intern']);
+        this.router.navigate(['map/intern']);
       },
       error: (error) => {
         console.error('Intern Registration failed', error);

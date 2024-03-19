@@ -15,9 +15,9 @@ export class CreateTechnologyComponent  {
   createTechForm: FormGroup | undefined;
   
   technology: Technology = {
+    id:0,
     isActive: true,
     loggedInUser: null,
-    technologyCode: '',
     technologyName: ''
   };
 
@@ -29,7 +29,7 @@ export class CreateTechnologyComponent  {
 
   ngOnInit() {
     this.createTechForm = this.fb.group({
-      technologyCode: ['', Validators.required],
+      //technologyCode: ['', Validators.required],
       technologyName: ['', Validators.required],
     });
   }
@@ -46,7 +46,7 @@ export class CreateTechnologyComponent  {
           text: 'Technology has been created successfully!',
         });
 
-        this.router.navigate(['/technology']);
+        this.router.navigate(['map/technology']);
       },
       error: (error) => {
         console.error('Technology Registration failed', error);

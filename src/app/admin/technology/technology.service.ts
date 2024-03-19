@@ -21,9 +21,9 @@ export class TechnologyService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     let userCode = localStorage.getItem('userCode');
     let post: Technology = {
+      id:0,
       isActive: true,
       loggedInUser: userCode,
-      technologyCode: techModel.technologyCode,
       technologyName: techModel.technologyName,
     }
 
@@ -41,7 +41,7 @@ export class TechnologyService {
     const requestData: Technology = {
       isActive: data.isActive,
       loggedInUser: userCode,
-      technologyCode: data.technologyCode,
+      id:data.id,
       technologyName: data.technologyName,
     };
 
@@ -57,7 +57,7 @@ export class TechnologyService {
     let userCode = localStorage.getItem('userCode');
     debugger;
     let updateTech : Technology = {
-      technologyCode: tech.technologyCode,
+      id:tech.id,
       technologyName: tech.technologyName,
       isActive: tech.isActive,
       loggedInUser: userCode

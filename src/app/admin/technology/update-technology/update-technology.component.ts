@@ -47,7 +47,7 @@ export class UpdateTechnologyComponent implements OnInit {
             text: 'Technology updated successfully!',
           });
 
-          this.router.navigate(['technology']);
+          this.router.navigate(['map/technology']);
           
         },
         error: (error: any) => {

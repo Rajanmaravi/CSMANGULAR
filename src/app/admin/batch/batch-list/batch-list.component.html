@@ -39,6 +39,7 @@
               <th>Batch Name</th>
               <th>Year</th>
               <th>Month</th>
+              <th>Created On</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -48,7 +49,8 @@
               <td>{{ batch.batchCode }}</td>
               <td>{{ batch.batchName }}</td>
               <td>{{ batch.year }}</td>
-              <td>{{ batch.month }}</td>
+              <td>{{ getMonthName(batch.month) }}</td>
+              <td>{{ batch.createdOn | date }}</td>
               <td>
                 <button class="btn btn-sm" title="edit" (click)="updateBatch(batch.id)"><i class="fa fa-edit text-info"></i></button>
                 <button class="btn btn-sm" title="delete" (click)="deleteBatch(batch)"><i class="fa fa-trash text-danger"></i></button>

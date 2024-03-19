@@ -1,0 +1,73 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Add Off Boarding Jse</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Manage Off Boarding Jse</a></li>
+            <li class="breadcrumb-item active">Add Off Boarding Jse</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <section class="content p-2">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="batch-container">        
+            <form #createOffBoardForm="ngForm" (ngSubmit)="createBoarding()" class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-6">
+                       <div class="form-group">
+                           <label for="jseId">Employee Code:</label>
+                           <select id="jseId" [(ngModel)]="offBoardingUser.jseId" name="jseId"  class="form-control" required>
+                             <option *ngFor="let employee of jseDetails" [value]="employee.id">{{ employee.empFullName}}</option>
+                           </select>
+                           <div *ngIf="createOffBoardForm.controls['jseId']?.hasError('required') && (createOffBoardForm.controls['jseId']?.touched || createOffBoardForm.controls['jseId']?.dirty)" class="error-message">
+                            Jse User is required.
+                           </div>
+                       </div>                 
+                    </div>
+                    <div class="col-md-6">
+                         <div class="form-group">
+                            <label for="dol">Date Of Leaving:</label>
+                            <input type="date" id="dol" [(ngModel)]="offBoardingUser.dol" name="dol" class="form-control" placeholder="Select Date Of Leaving">
+                          </div>
+                          <div *ngIf="createOffBoardForm.controls['dol']?.hasError('required') && (createOffBoardForm.controls['dol']?.touched || createOffBoardForm.controls['dol']?.dirty)" class="error-message">
+                            Date Of Leaving is required.
+                           </div>
+                    </div>
+                  </div>
+      
+                   <!-- Validation messages -->
+               
+                <div class="row">
+                  <label for="leavingReason">Leaving Reason:</label>                 
+                  <div class="col-md-12">
+                    <textarea id="leavingReason" [(ngModel)]="offBoardingUser.leavingReason" name="leavingReason" class="form-control txtArea" placeholder="Leaving Reason" required></textarea>                 
+                  </div>
+                    <div *ngIf="createOffBoardForm.controls['leavingReason']?.errors?.['required'] && 
+                    (createOffBoardForm.controls['leavingReason'].touched || createOffBoardForm.controls['leavingReason'].dirty)" class="error-message">
+                        Leaving Reason is required.
+                    </div>
+                </div>
+                <br />
+  
+              
+    
+              <button type="submit" class="btn btn-primary" [disabled]="!createOffBoardForm.valid">Create OffBoarding</button>
+    
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+

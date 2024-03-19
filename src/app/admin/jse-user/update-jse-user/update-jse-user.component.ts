@@ -28,12 +28,6 @@ export class UpdateJseUserComponent {
     lastName: '',
     email: '',
     mobile: '',
-    // raCode: '',
-    // raEmail: '',
-    pmCode: '',
-    pmEmail: '',
-    location: '',
-    projectName: '',
     batchId: 0,
     technologyId: 0
   };
@@ -110,7 +104,7 @@ export class UpdateJseUserComponent {
               text: 'Jse user details updated successfully!',
             });
   
-            this.router.navigate(['intern']);
+            this.router.navigate(['map/intern']);
           }else{
             Swal.fire({
               icon: 'error', 

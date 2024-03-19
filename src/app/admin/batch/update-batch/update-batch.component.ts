@@ -52,7 +52,7 @@ export class UpdateBatchComponent implements OnInit {
             text: 'Batch updated successfully!',
           });
 
-          this.router.navigate(['batch']);
+          this.router.navigate(['map/batch']);
           
         },
         error: (error: any) => {

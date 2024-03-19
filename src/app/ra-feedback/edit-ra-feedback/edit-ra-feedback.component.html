@@ -1,0 +1,149 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9">
+        <div class="registration-container">
+          <h2>Edit RA Feedback From</h2>
+          <form #raFeedbackForm="ngForm" (ngSubmit)="editRaFeedback(raFeedbackForm.value)" class="needs-validation" novalidate>
+           
+            <!-- <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="employeeCode">Jse User Name:</label>
+                        <select id="employeeCode" [(ngModel)]="raFeedbackUserData.employeeCode" name="employeeCode" (change)="getInternDetails()" class="form-control"  required>
+                            <option *ngFor="let jse of jseList" [value]="jse.employeeCode">{{ jse.userName }}</option>
+                        </select>                   
+                    </div>
+                </div>
+            </div> -->
+           
+            <div class="row" hidden>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="fullName">Employee Name:</label>
+                        <input type="text" id="fullName" [(ngModel)]="raFeedbackUserData.empFullName" name="fullName" class="form-control" readonly placeholder="Employee Name" required>
+                        <div *ngIf="raFeedbackForm.controls['fullName']?.hasError('required') && (raFeedbackForm.controls['fullName']?.touched || raFeedbackForm.controls['fullName']?.dirty)" class="error-message">
+                            Employee Name is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="employeeCode">Employee ID:</label>
+                        <input type="text" id="employeeCode" [(ngModel)]="raFeedbackUserData.employeeCode" name="employeeCode" readonly class="form-control" placeholder="Employee Code" required>
+                        <div *ngIf="raFeedbackForm.controls['employeeCode']?.hasError('required') && (raFeedbackForm.controls['employeeCode']?.touched || raFeedbackForm.controls['employeeCode']?.dirty)" class="error-message">
+                            Employee Code is required.
+                        </div>
+                    </div>
+                </div>             
+           </div>
+        
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="raName">Reporting Authority:</label>
+                        <input type="text" id="raName" [(ngModel)]="raFeedbackUserData.raName" placeholder="Reporting Authority Name" name="raName" class="form-control" readonly required>
+                        <div *ngIf="raFeedbackForm.controls['raName']?.hasError('required') && (raFeedbackForm.controls['raName']?.touched || raFeedbackForm.controls['raName']?.dirty)" class="error-message">
+                            Reporting Authority Name is required.
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="projectName">Assigned Project Name:</label>
+                        <input type="text" id="projectName" [(ngModel)]="raFeedbackUserData.projectName" name="projectName" class="form-control" placeholder="Project Name" readonly required>
+                        <div *ngIf="raFeedbackForm.controls['projectName']?.hasError('required') && (raFeedbackForm.controls['projectName']?.touched || raFeedbackForm.controls['projectName']?.dirty)" class="error-message">
+                            Project Name is required.
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div class="row" hidden>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="raName">Reporting Authority:</label>
+                        <input type="text" id="raCode" [(ngModel)]="raFeedbackUserData.raCode" name="raCode" class="form-control" readonly required>                     
+                      </div>
+                </div>
+            </div>
+            
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th *ngFor="let ratingOption of [1, 2, 3, 4, 5]">{{ ratingOption }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let aspect of aspects; let i = index">
+                        <tr>
+                          <td>{{ aspect.aspectName }}</td>
+                          <td *ngFor="let ratingOption of [1, 2, 3, 4, 5]">
+                            <label>
+                              <input 
+                                 type="radio" 
+                                 name="{{ aspect.id }}"  
+                                 [(ngModel)]="selectedRatings[aspect.id]"
+                                 [value]="ratingOption" 
+                                 [checked]="isRatingSelected(aspect.id, ratingOption)"
+                                 required>
+                            </label>
+                          </td>
+                        </tr>                    
+                    
+                      </ng-container>
+                </tbody>
+              </table>   
+              
+              <div class="row">
+                <div class="col-md-2">
+                  <label for="Poor">1: </label>
+                  <label for="Poor" class="lblPadding">Poor</label>
+                </div>
+                <div class="col-md-3">
+                    <label for="Below">2: </label>
+                    <label for="Below" class="lblPadding">Below Average</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="Average">3: </label>
+                    <label for="Average" class="lblPadding">Average</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="Good">4: </label>
+                    <label for="Good" class="lblPadding">Good</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="Excellent">5: </label>
+                    <label for="Excellent" class="lblPadding">Excellent</label>
+                </div>
+              </div>
+
+              <div class="container mt-4">           
+                <div>
+                  <div class="form-group">
+                     <label class="col-sm-3">Reviewer Comments:</label>
+                     <div class="col-sm-12">
+                      <textarea class="form-control clsTxtAreas" id="reviewerComments" name="reviewerComments" [(ngModel)]="raFeedbackUserData.reviewerComments" placeholder="Reviewer Comments:"  required></textarea>
+                    </div>
+                    <div *ngIf="raFeedbackForm.controls['reviewerComments']?.hasError('required') && (raFeedbackForm.controls['reviewerComments']?.touched || raFeedbackForm.controls['reviewerComments']?.dirty)" class="error-message">
+                      Reviewer Comments is required.
+                  </div>
+                  </div>
+                </div>
+              </div>
+              
+            <br/>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" (click)="initForm()" [disabled]="!raFeedbackForm.valid">Create Feedback</button>
+            </div>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+

@@ -23,13 +23,13 @@
           <div class="batch-container">        
             <form #createTechForm="ngForm" (ngSubmit)="createTechnology()" class="needs-validation" novalidate>
               <div class="form-group row">
-                  <label for="technologyCode">Technology Code:</label>
-                    <div *ngIf="createTechForm.controls['technologyCode']?.errors?.['required'] && 
-                    (createTechForm.controls['technologyCode'].touched || createTechForm.controls['technologyCode'].dirty)" class="error-message">
+                  <label for="id">Technology Id:</label>
+                    <div *ngIf="createTechForm.controls['id']?.errors?.['required'] && 
+                    (createTechForm.controls['id'].touched || createTechForm.controls['id'].dirty)" class="error-message">
                         Technology Code is required.
                     </div>
                   <div class="col-sm-8">
-                    <input type="text" id="technologyCode" [(ngModel)]="technology.technologyCode" name="technologyCode" class="form-control" placeholder="Technology Code" required>
+                    <input type="text" id="id" [(ngModel)]="technology.id" name="technologyCode" class="form-control" placeholder="Technology Id" required>
                   
                   </div>
                 </div>

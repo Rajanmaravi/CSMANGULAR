@@ -53,6 +53,7 @@ export class ViewMapRaInternComponent {
                 text: 'The Map RA Jse User has been deleted successfully!',
               }).then(() => {
                 this.getMapRAIntern();
+                this.router.navigate(['map/mapra']);
               });
             } else {
               console.error('Unexpected response:', response);
@@ -109,7 +110,7 @@ export class ViewMapRaInternComponent {
            }))
          };
    
-         this.router.navigate(['/mapra/update'], { queryParams });
+         this.router.navigate(['map/mapra/update'], { queryParams });
        } else {
          console.error('Map RA Intern not found for ID:', id);
        }      

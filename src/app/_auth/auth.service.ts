@@ -1,9 +1,9 @@
 
 import { Injectable } from '@angular/core';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import { Observable, catchError, of, tap, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { LoginRequest, UserDaoModel } from '../_dto/user-dao.model';
+import { LoginRequest, OTPDaoModel, UserDaoModel } from '../_dto/user-dao.model';
 import { RefreshDaoModel } from '../_dto/refresh-dao.model';
 
 @Injectable({
@@ -11,6 +11,7 @@ import { RefreshDaoModel } from '../_dto/refresh-dao.model';
 })
 export class AuthService {
 
+  randomCombination: any;
   private rootUrl = environment.apiUrl;
   constructor(private http:HttpClient) { }
 
@@ -30,7 +31,8 @@ export class AuthService {
       refreshTokenExpiresOn: new Date,
       password: userModel.password,
       roleId: 2,
-      userRole: "User"
+      userRole: "User",
+      email:userModel.email,
     }
 
     return this.http.post(`${this.rootUrl}/api/User/Create`, post, {
@@ -145,6 +147,54 @@ export class AuthService {
     return result;
   }
   logout(): void {
+    debugger;
     localStorage.removeItem('token');
   }
+
+
+  sendOtp(userModel: any): Observable<any> {
+   
+    debugger;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+   
+    let post: OTPDaoModel = {
+      employeeCode: userModel.userName,
+      email:userModel.email,
+      otp:'',
+      password:'',
+      otpExpiration:new Date()
+    }
+
+    return this.http.post<any>(`${this.rootUrl}/api/User/SendOtp`, post);
+  }
+
+  validateUserOtp(userModel: any): Observable<any> {
+   
+    debugger;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<any>(`${this.rootUrl}/api/User/ValidateUserOTP`, userModel);
+  }
+
+  changeUserPassword(data: any): Observable<any> { 
+    debugger;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post(`${this.rootUrl}/api/User/ForgetPassword`, data, {
+      headers: headers,
+      responseType: 'text' 
+    });
+  }
+
+  generateRandom():Observable<any> {
+    debugger;
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < 6; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return  of(result);
+
+  }
+
 }

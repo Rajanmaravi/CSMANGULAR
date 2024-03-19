@@ -26,12 +26,6 @@ export class JseUserService {
       lastName: internModel.lastName,
       email: internModel.email,
       mobile: internModel.mobile,
-      // raCode: internModel.raCode,
-      // raEmail: internModel.raEmail,
-      pmCode: internModel.pmCode,
-      pmEmail: internModel.pmEmail,
-      location: internModel.location,
-      projectName: internModel.projectName,
       batchId: internModel.batchId,
       technologyId: internModel.technologyId
     }
@@ -47,6 +41,11 @@ export class JseUserService {
     return this.http.get<any>(`${this.rootUrl}/api/JseUser/GetMapRAInterns`);
   }
 
+  getJseUser():Observable<any>{
+    debugger;
+    return this.http.get<any>(`${this.rootUrl}/api/JseUser/GetJseUser`);
+  }
+
   deleteJseUser(data: any): Observable<any> {
     debugger
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -60,12 +59,6 @@ export class JseUserService {
       lastName: data.lastName,
       email: data.email,
       mobile: data.mobile,
-      // raCode: data.raCode,
-      // raEmail: data.raEmail,
-      pmCode: data.pmCode,
-      pmEmail: data.pmEmail,
-      location: data.location,
-      projectName: data.projectName,
       batchId: data.batchId,
       technologyId: data.technologyId,
       isActive: data.isActive,
@@ -84,7 +77,7 @@ export class JseUserService {
     let userCode : string | null = localStorage.getItem('userCode');
     let loggedInUser: string = userCode || '';
     debugger;
-    let updateJse : JseUseModel = {
+    let updateJse : JseUser = {
       id:jse.id,
       employeeCode: jse.employeeCode,
       firstName: jse.firstName,
@@ -92,12 +85,6 @@ export class JseUserService {
       lastName: jse.lastName,
       email: jse.email,
       mobile: jse.mobile,
-      // raCode: jse.raCode,
-      // raEmail: jse.raEmail,
-      pmCode: jse.pmCode,
-      pmEmail: jse.pmEmail,
-      location: jse.location,
-      projectName: jse.projectName,
       batchId: jse.batchId,
       technologyId: jse.technologyId,
       isActive: jse.isActive,
@@ -110,11 +97,27 @@ export class JseUserService {
   }
 
   uploadJseFile(selectedFile: File): Observable<any> {
+    debugger;
+    // formData.append('loggedInUser', loggedInUser);
       const formData = new FormData();
       formData.append('formFile', selectedFile);
+      let userCode : string | null = localStorage.getItem('userCode');
+      let loggedInUser: string = userCode || '';
 
-      return this.http.post<any>(`${this.rootUrl}/api/JseUser/UploadJseUser`, formData);
+
+      return this.http.post<any>(`${this.rootUrl}/api/JseUser/UploadJseUser?loggedInUser=${loggedInUser}`, formData);
    }
 
+
+   uploadJseExcellFile(selectedFile: File,batchName:string): Observable<any> {
+    debugger;
+      const formData = new FormData();
+      formData.append('formFile', selectedFile);
+      let userCode : string | null = localStorage.getItem('userCode');
+      let loggedInUser: string = userCode || '';
+
+
+      return this.http.post<any>(`${this.rootUrl}/api/JseUser/UploadJseUser?loggedInUser=${loggedInUser}&batchName=${batchName}`, formData);
+   }
   
 }

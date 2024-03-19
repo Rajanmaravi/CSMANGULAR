@@ -55,6 +55,7 @@ export class ViewRaComponent {
               }).then(() => {
                 // Reload the page or fetch data again
                 this.getReportingData();
+                this.router.navigate(['map/jsera']);
               });
             } else {
               // Handle other responses if needed
@@ -94,7 +95,7 @@ export class ViewRaComponent {
         }))
       };
 
-      this.router.navigate(['/jsera/updatera'], { queryParams });
+      this.router.navigate(['map/jsera/updatera'], { queryParams });
     } else {
       console.error('RA not found for ID:', id);
     }

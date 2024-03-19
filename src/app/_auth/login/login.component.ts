@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class LoginComponent {
 
   public invalidLogin: boolean = false;
-  captcha: string;
+  captcha: any;
   loginForm: FormGroup | any;
 
   constructor(
@@ -25,7 +25,7 @@ export class LoginComponent {
 
   ngOnInit()
    {
-
+      this.reFreshCap();
       this.captcha;
     // Initialize the form group
       this.loginForm = this.formBuilder.group({
@@ -51,7 +51,7 @@ export class LoginComponent {
 
           this.authService.setToken(token, refreshToken, dayRefreshTokenExpiryTime, hoursOfExpiry,userRole)
 
-          this.router.navigate(["admin"]);
+          this.router.navigate(["admin/map/dashboard"]);
 
         },
         error: (error) => {
@@ -75,6 +75,16 @@ export class LoginComponent {
 
     refreshCaptcha() {
       this.captcha = this.authService.generateRandomAlphanumeric();
+    }
+
+    reFreshCap(){
+      debugger;
+      this.authService.generateRandom().subscribe({
+        next:(response) =>{
+          this.captcha = response;
+        }
+      })
+    
     }
     
 

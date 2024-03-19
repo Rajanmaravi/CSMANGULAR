@@ -1,0 +1,94 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Off Boarding Jse List</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Manage boardnology</a></li>
+            <li class="breadcrumb-item active">Off Boarding Jse List</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+<!-- Main content -->
+<section class="content p-2">
+    <div class="container-fluid">
+
+            <form #offboardingForm="ngForm" (ngSubmit)="getOffboard()" class="needs-validation" novalidate>
+              <div class="row">
+               <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="batchId">Select Batch</label>
+                        <select id="batchId" [(ngModel)]="offboardInterns.batchId" name="batchId" class="form-control" required>
+                          <option *ngFor="let batch of batches" [value]="batch.id">{{ batch.batchName }}</option>
+                        </select>                  
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="technologyId">Select Technology</label>
+                        <select id="technologyId" [(ngModel)]="offboardInterns.technologyId" name="technologyId" class="form-control" required>
+                          <option *ngFor="let tech of technologies" [value]="tech.id">{{ tech.technologyName }}</option>
+                        </select>
+                       
+                    </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                      <button type="submit" class="btn btn-primary btnSubmit">Offboard Jse</button>
+                    </div>
+               </div> 
+               <div class="col-md-3">
+                <button routerLink="create" title="Add Off Boarding Jse" class="btn btn-dark float-end"><i class="fa fa-plus"></i></button>
+              </div>          
+              </div>
+            </form>
+            
+          
+            
+            <!-- <br/>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" 
+                autocomplete="off" placeholder="Search...">
+            </div>
+            </div> -->
+            <br/>
+            <div class="row">
+                <table class="table">
+                    <caption></caption>
+                    <thead>
+                    <tr>
+                        <th>Sno</th>
+                        <th>Employee Code</th>
+                        <th>Name</th>
+                        <th>DOL</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th class="tblCTextAline">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let board of offBoard; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ board.employeeCode }}</td>
+                        <td>{{ board.firstName}}</td>
+                        <td>{{board.dol | date}}</td>
+                        <td>{{board.email}}</td>
+                        <td>{{board.mobile}}</td>
+                        <td class="tblCTextAline">
+                        <button class="btn btn-sm" [disabled]="true" title="edit" (click)="updateOffBoard(board.id)"><i class="fa fa-edit text-info"></i></button>
+                        <button class="btn btn-sm"  title="delete" (click)="deleteOffBoard(board)" ><i class="fa fa-trash text-danger"></i></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+  </section>

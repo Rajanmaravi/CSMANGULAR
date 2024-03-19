@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JseUserService } from '../jse-user.service';
-import {JseUserDetails} from '../../../_dto/intern-dao.model';
+import {JseUserDao, JseUserDetails} from '../../../_dto/intern-dao.model';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ViewJseUserComponent implements OnInit {
 
-  jseDetails:JseUserDetails[]=[];
+  jseDetails:JseUserDao[]=[];
   searchText = '';
   
   constructor(
@@ -23,7 +23,7 @@ export class ViewJseUserComponent implements OnInit {
   }
 
    getJseUsers(){
-     this.jseUserService.getJseUserDetails().subscribe({
+     this.jseUserService.getJseUser().subscribe({
       next:(response) =>{
          this.jseDetails = response;
       }
@@ -51,6 +51,7 @@ export class ViewJseUserComponent implements OnInit {
                 text: 'The Jse User has been deleted successfully!',
               }).then(() => {
                 this.getJseUsers();
+                this.router.navigate(['map/intern']);
               });
             } else {
               console.error('Unexpected response:', response);
@@ -87,23 +88,14 @@ export class ViewJseUserComponent implements OnInit {
               middleName:jseToUpdate.middleName,
               lastName:jseToUpdate.lastName,
               email:jseToUpdate.email,
-              mobile:jseToUpdate.mobile,
-              raCode:jseToUpdate.raCode,
-              raName:jseToUpdate.raName,
-              raPhone:jseToUpdate.raPhone,
-              raEmail:jseToUpdate.raEmail,
-              pmCode:jseToUpdate.pmCode,
-              pmEmail:jseToUpdate.pmEmail,
-              location:jseToUpdate.location,	
+              mobile:jseToUpdate.mobile,	
               batchId:jseToUpdate.batchId,
               batchCode:jseToUpdate.batchCode,
               batchName:jseToUpdate.batchName,
               month:jseToUpdate.month,
               year:jseToUpdate.year,
               technologyId:jseToUpdate.technologyId,
-              technologyCode:jseToUpdate.technologyCode,
               technologyName:jseToUpdate.technologyName,
-              projectName:jseToUpdate.projectName,
               isActive:jseToUpdate.isActive,
               isDeleted:jseToUpdate.isDeleted,
               createdOn:jseToUpdate.createdOn,
@@ -114,7 +106,7 @@ export class ViewJseUserComponent implements OnInit {
            }))
          };
    
-         this.router.navigate(['/intern/updateintern'], { queryParams });
+         this.router.navigate(['map/intern/updateintern'], { queryParams });
        } else {
          console.error('Batch not found for ID:', id);
        }      

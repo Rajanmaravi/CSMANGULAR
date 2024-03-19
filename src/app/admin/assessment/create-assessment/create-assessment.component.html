@@ -1,0 +1,137 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Assessment</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Assessment</a></li>
+            <li class="breadcrumb-item active">Assessment</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+    <section class="content p-2">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col">
+                            <form #assessmentForm="ngForm" (ngSubmit)="assessmentDetails(assessmentForm)" class="needs-validation" novalidate>
+            
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="batchId">Select Batch:</label>
+                                            <select id="batchId" [(ngModel)]="assessmentUser.batchId" (ngModelChange)="onSelectionChange()" name="batchId" class="form-control" required>
+                                              <option *ngFor="let batch of batches" [value]="batch.id">{{ batch.batchName }}</option>
+                                            </select>
+                                            <div *ngIf="assessmentForm.controls['batchId']?.hasError('required') && (assessmentForm.controls['batchId']?.touched || assessmentForm.controls['batchId']?.dirty)" class="error-message">
+                                                Batch Name is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="technologyId">Select Technology:</label>
+                                            <select id="technologyId" [(ngModel)]="assessmentUser.technologyId" (ngModelChange)="onSelectionChange()" name="technologyId" class="form-control" required>
+                                              <option *ngFor="let tech of technologies" [value]="tech.id">{{ tech.technologyName }}</option>
+                                            </select>
+                                            <div *ngIf="assessmentForm.controls['technologyId']?.hasError('required') && (assessmentForm.controls['technologyId']?.touched || assessmentForm.controls['technologyId']?.dirty)" class="error-message">
+                                                Technology is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="assessmentId">Select Assessment:</label>
+                                            <select id="assessmentId" [(ngModel)]="assessmentUser.assessmentId" name="assessmentId" class="form-control" required>
+                                              <option *ngFor="let asmt of assessment" [value]="asmt.id">{{ asmt.assementName }}</option>
+                                            </select>
+                                            <div *ngIf="assessmentForm.controls['assessmentId']?.hasError('required') && (assessmentForm.controls['assessmentId']?.touched || assessmentForm.controls['assessmentId']?.dirty)" class="error-message">
+                                                Assessment Name is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                           <label for="assessmentDate">Select Assessment Date:</label>
+                                           <input type="date" id="assessmentDate" [(ngModel)]="assessmentUser.assessmentDate" name="assessmentDate" class="form-control" required>
+                                        </div>
+                                        <div *ngIf="assessmentForm.controls['assessmentDate'].hasError('required') && 
+                                                    (assessmentForm.controls['assessmentDate'].touched || 
+                                                    assessmentForm.controls['assessmentDate'].dirty)" class="error-message">
+                                            Assessment Date is required.
+                                        </div>
+                                        <div *ngIf="assessmentForm.controls['assessmentDate'].hasError('dateNotSelected') && 
+                                                    (assessmentForm.controls['assessmentDate'].touched || 
+                                                    assessmentForm.controls['assessmentDate'].dirty)" class="error-message">
+                                           Please select a valid Assessment Date.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                      <label for="description">Assessment Description</label>
+                                      <textarea id="description" [(ngModel)]="assessmentUser.description" name="description" class="form-control txtArea" required></textarea>
+                                    </div>
+                                    <div *ngIf="assessmentForm.controls['description']?.hasError('required') && (assessmentForm.controls['description']?.touched || assessmentForm.controls['description']?.dirty)" class="error-message">
+                                        Assessment description is required.
+                                    </div>
+                                </div>
+
+                                <div class="row p-2">
+                                    <div class="col-12">
+                                     <table class="table table-bordered table-hover">
+                                       <caption></caption>
+                                       <thead>
+                                         <tr>
+                                           <th>Sno</th>
+                                           <th>Employee Code</th>
+                                           <th>First Name</th>
+                                           <th>FullMark</th>
+                                           <th>SecuredMark</th>
+                                           <th>IsAbsent</th>
+                                         </tr>
+                                       </thead>
+                                       <tbody>
+                                         <tr *ngFor="let jse of jseUser ;let i = index">
+                                           <td>{{ i + 1 }}</td>
+                                           <td>{{ jse.employeeCode }}</td>
+                                           <td>{{ jse.firstName}}</td>
+                                           <td>{{ jse.fullMark}}</td>
+                                           <td><input type="text" [(ngModel)]="jse.securedMark" name="securedMark_{{ i }}" class="form-control"></td>
+                                           <td><input type="checkbox" [(ngModel)]="jse.isAbsent" name="isAbsent_{{ i }}"></td>
+                                          </tr>
+                                       </tbody>
+                                     </table>
+                                    </div>
+                                </div>
+
+                                <br/>
+                    
+                                <div class="form-group">
+                                  <button type="submit" class="btn btn-primary" [disabled]="!assessmentForm.valid">Assessment</button>
+                                </div>
+                              </form>
+                        </div>         
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+  
+
+  
+
+

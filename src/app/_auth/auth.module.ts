@@ -9,6 +9,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { LogoutComponent } from './logout/logout.component';
+import { OtpValidateComponent } from './otp-validate/otp-validate.component';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { LogoutComponent } from './logout/logout.component';
     RegistrationComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    LogoutComponent
+    LogoutComponent,
+    OtpValidateComponent
   ],
   imports: [
     CommonModule,

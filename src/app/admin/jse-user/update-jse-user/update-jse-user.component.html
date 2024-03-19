@@ -21,6 +21,30 @@
         <div class="row">
             <div class="col-md-10">
                 <form #interForm="ngForm" (ngSubmit)="updateIntern()" class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="batchId">Select Batch:</label>
+                                <select id="batchId" [(ngModel)]="internUser.batchId" name="batchId" class="form-control" required>
+                                  <option *ngFor="let batch of batches" [value]="batch.id">{{ batch.batchName }}</option>
+                                </select>
+                                <div *ngIf="interForm.controls['batchId']?.hasError('required') && (interForm.controls['batchId']?.touched || interForm.controls['batchId']?.dirty)" class="error-message">
+                                    Batch Name is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="technologyId">Select Technology:</label>
+                                <select id="technologyId" [(ngModel)]="internUser.technologyId" name="technologyId" class="form-control" required>
+                                  <option *ngFor="let tech of technologies" [value]="tech.id">{{ tech.technologyName }}</option>
+                                </select>
+                                <div *ngIf="interForm.controls['technologyId']?.hasError('required') && (interForm.controls['technologyId']?.touched || interForm.controls['technologyId']?.dirty)" class="error-message">
+                                    Technology is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row" hidden>
                         <div class="col-12 col-md-6">
                            <div class="form-group">
@@ -71,7 +95,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="text" id="email" [(ngModel)]="internUser.email" name="email" class="form-control" placeholder="Email" required readonly>
+                                <input type="text" id="email" [(ngModel)]="internUser.email" name="email" class="form-control" placeholder="Email" required>
                                 <div *ngIf="interForm.controls['email']?.hasError('required') && (interForm.controls['email']?.touched || interForm.controls['email']?.dirty)" class="error-message">
                                     Email is required.
                                 </div>
@@ -88,72 +112,11 @@
                 
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="pmCode">PmCode:</label>
-                                <input type="text" id="pmCode" [(ngModel)]="internUser.pmCode" name="pmCode" class="form-control" placeholder="PmCode" required>
-                                <div *ngIf="interForm.controls['pmCode']?.hasError('required') && (interForm.controls['pmCode']?.touched || interForm.controls['pmCode']?.dirty)" class="error-message">
-                                    Project Manager Code is required.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="pmEmail">PmEmail:</label>
-                                <input type="text" id="pmEmail" [(ngModel)]="internUser.pmEmail" name="pmEmail" class="form-control" placeholder="pmEmail" required>
-                                <div *ngIf="interForm.controls['pmEmail']?.hasError('required') && (interForm.controls['pmEmail']?.touched || interForm.controls['pmEmail']?.dirty)" class="error-message">
-                                    Project Manager Email is required.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
         
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="location">Location:</label>
-                                <input type="text" id="location" [(ngModel)]="internUser.location" name="location" class="form-control" placeholder="location" required>
-                                <div *ngIf="interForm.controls['location']?.hasError('required') && (interForm.controls['location']?.touched || interForm.controls['location']?.dirty)" class="error-message">
-                                    Location is required.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="projectName">Project Name:</label>
-                                <input type="text" id="projectName" [(ngModel)]="internUser.projectName" name="projectName" class="form-control" placeholder="Project Name" required>
-                                <div *ngIf="interForm.controls['projectName']?.hasError('required') && (interForm.controls['projectName']?.touched || interForm.controls['projectName']?.dirty)" class="error-message">
-                                    Project Name is required.
-                                </div>
-                              </div>
-                        </div>
-                    </div>
+                    
         
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="batchId">Select Batch:</label>
-                                <select id="batchId" [(ngModel)]="internUser.batchId" name="batchId" class="form-control" required>
-                                  <option *ngFor="let batch of batches" [value]="batch.id">{{ batch.batchName }}</option>
-                                </select>
-                                <div *ngIf="interForm.controls['batchId']?.hasError('required') && (interForm.controls['batchId']?.touched || interForm.controls['batchId']?.dirty)" class="error-message">
-                                    Batch Name is required.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="technologyId">Select Technology:</label>
-                                <select id="technologyId" [(ngModel)]="internUser.technologyId" name="technologyId" class="form-control" required>
-                                  <option *ngFor="let tech of technologies" [value]="tech.id">{{ tech.technologyName }}</option>
-                                </select>
-                                <div *ngIf="interForm.controls['technologyId']?.hasError('required') && (interForm.controls['technologyId']?.touched || interForm.controls['technologyId']?.dirty)" class="error-message">
-                                    Technology is required.
-                                </div>
-                            </div>
-                        </div>
-                    </div><br/>
+                   <br/>
         
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary" [disabled]="!interForm.valid">Update Intern</button>

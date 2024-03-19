@@ -26,15 +26,15 @@
               <div class="col-12 col-md-6">
              
                  <ng-multiselect-dropdown
-                 name="employeeCode"
-                 [placeholder]="'Select Employee Code'"
-                 [data]="feedbackInternForm.empFullName"
-                 [text]="'empFullName'"
+                 name="raCode"
+                 [placeholder]="'Select RA Code'"
+                 [data]="feedbackInternForm.raFullName"
+                 [text]="'raFullName'"
                  [settings]="dropdownSettings"
                  (onDropDownClose)="onDropDownClose()"
                  (onSelect)="onItemSelect($event)"
                  (onSelectAll)="onSelectAll($event)"
-                 [(ngModel)]="selectedEmployeeCodes">
+                 [(ngModel)]="selectedReportingAuthorityCodes">
                </ng-multiselect-dropdown>
  
               

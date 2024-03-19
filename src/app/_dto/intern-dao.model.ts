@@ -7,12 +7,6 @@ export class CreateJseUser {
   lastName: string | null =null;
   email: string | null =null;
   mobile: string | null =null;
-  // raCode: string | null =null;
-  // raEmail: string | null =null;
-  pmCode: string | null =null;
-  pmEmail: string | null =null;
-  location: string | null =null;
-  projectName: string | null =null;
   batchId: number = 0;
   technologyId: number = 0;
 }
@@ -28,12 +22,6 @@ export class JseUser {
     lastName: string | null =null;
     email: string | null =null;
     mobile: string | null =null;
-    // raCode: string | null =null;
-    // raEmail: string | null =null;
-    pmCode: string | null =null;
-    pmEmail: string | null =null;
-    location: string | null =null;
-    projectName: string | null =null;
     batchId: number = 0;
     technologyId: number = 0;
   }
@@ -96,12 +84,6 @@ export class JseUser {
     lastName:string;
     email:string;
     mobile:string;
-    // raCode:string;
-    // raEmail:string;
-    pmCode:string;  
-    pmEmail:string;
-    location:string;
-    projectName:string;
     batchId:string;
     technologyId:string;
     isActive:string;
@@ -139,3 +121,40 @@ export class JseUser {
     technologyId: number = 0;
   }
   
+  export interface JseList {
+    employeeCode: string;
+    userName: string;
+  }
+
+  export interface JseUserDao {
+    id:number;
+    employeeCode :string;
+    firstName:string;
+    middleName:string;
+    lastName:string;
+    email:string;
+    empFullName:string;
+    mobile:string;	
+    batchId:number;
+    batchCode:string;
+    batchName:string;
+    month:string;
+    year:string;
+    technologyId:number;
+    technologyName:string
+    isActive:boolean;
+    isDeleted:boolean;
+    createdOn:Date;
+    modifiedOn:Date;
+    createdBy:string;
+    modifiedBy:string;
+
+}
+
+export interface OffBoardingJse{
+  id:number;
+  jseId:number;
+  dol:Date;
+  leavingReason:string;
+  loggedInUser:string;
+}

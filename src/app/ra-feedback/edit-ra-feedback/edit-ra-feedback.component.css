@@ -1,0 +1,11 @@
+.lblPadding{
+    padding: 5px;
+}
+.error-message {
+    color: red;
+    margin-top: 5px;
+  }
+
+  .clsTxtAreas{
+    height: 200px !important;
+  }

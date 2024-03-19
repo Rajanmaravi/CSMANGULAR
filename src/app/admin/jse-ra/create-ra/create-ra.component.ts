@@ -46,7 +46,7 @@ export class CreateRaComponent implements OnInit {
               text: 'Reporting Authority has been created successfully!',
             });
     
-            this.router.navigate(['/jsera']);
+            this.router.navigate(['map/jsera']);
           }else{
             Swal.fire({
               icon: 'error',

@@ -13,10 +13,24 @@
                   <input type="text" id="employeeCode" formControlName="employeeCode" class="form-control" placeholder="Employee Code" required>
                   <div *ngIf="registrationForm.get('employeeCode').hasError('required') && 
                              (registrationForm.get('employeeCode').touched || registrationForm.get('employeeCode').dirty)" class="error-message">
-                    Employee Code is required.
+                     Employee Code is required.
                   </div>
                 </div>
               </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="text" id="email" formControlName="email" class="form-control" placeholder="Email" required>
+                  <div *ngIf="registrationForm.get('email').hasError('required') && 
+                             (registrationForm.get('email').touched || registrationForm.get('email').dirty)" class="error-message">
+                    Email is required.
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="firstName">First Name:</label>
@@ -27,15 +41,15 @@
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="middleName">Middle Name:</label>
                   <input type="text" id="middleName" formControlName="middleName" class="form-control" placeholder="Middle Name">
                 </div>
               </div>
+              
+            </div>  
+            <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="lastName">Last Name:</label>
@@ -46,17 +60,19 @@
                   </div>
                 </div>
               </div>
-            </div>  
-
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" formControlName="password" class="form-control"
-                   placeholder="Password" required>
-                <div *ngIf="registrationForm.get('password').hasError('required') && 
-                    (registrationForm.get('password').touched || registrationForm.get('password').dirty)" class="error-message">
-                     Password is required.
-               </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="password">Password:</label>
+                  <input type="password" id="password" formControlName="password" class="form-control"
+                     placeholder="Password" required>
+                    <div *ngIf="registrationForm.get('password').hasError('required') && 
+                        (registrationForm.get('password').touched || registrationForm.get('password').dirty)" class="error-message">
+                        Password is required.
+                  </div>
+                 </div>
+              </div>
             </div>
+           
     
             <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">Register</button>
             <br/>

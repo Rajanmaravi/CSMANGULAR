@@ -1,0 +1,159 @@
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Assessment</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Assessment Report</a></li>
+            <li class="breadcrumb-item active">Assessment Report</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+    <section class="content p-2">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col">
+                            <form #assessmentReportForm="ngForm" (ngSubmit)="getAssessmentReport()" class="needs-validation" novalidate>
+            
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="batchId">Select Batch</label>
+                                            <select id="batchId" [(ngModel)]="assessmentReport.batchId" name="batchId" class="form-control" required>
+                                              <option *ngFor="let batch of batches" [value]="batch.id">{{ batch.batchName }}</option>
+                                            </select>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="technologyId">Select Technology</label>
+                                            <select id="technologyId" [(ngModel)]="assessmentReport.technologyId" name="technologyId" class="form-control" required>
+                                              <option *ngFor="let tech of technologies" [value]="tech.id">{{ tech.technologyName }}</option>
+                                            </select>
+                                           
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="assessmentId">Select Assessment</label>
+                                            <select id="assessmentId" [(ngModel)]="assessmentReport.assessmentId" name="assessmentId" 
+                                                class="form-control" required>
+                                                <option *ngFor="let asmt of assessment" [value]="asmt.id">{{ asmt.assementName }}</option>
+                                            </select>
+                                            
+                                        </div>
+                                    </div>
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="employeeCode">Select Jse User</label>
+                                            <select id="employeeCode" [(ngModel)]="assessmentReport.employeeCode" placeholder="Select Employee"
+                                             name="employeeCode" class="form-control dropdown-toggle dropdown" mdbDropdown aria-expanded="false"
+                                               mdbDropdownToggle  required>
+                                                <option  [value]="">Select Employee</option>
+                                                <option *ngFor="let jse of jseDetails" [value]="jse.employeeCode">{{ jse.empFullName }}</option>
+                                            </select>
+                                            <!-- <ul
+                                                    mdbDropdownMenu
+                                                    class="dropdown-menu"
+                                                    aria-labelledby="dropdownMenuButton"
+                                                >
+                                              <div class="input-group">
+                                                  <input
+                                                    mdbInput
+                                                    (keydown)="searchItems($event)"
+                                                    type="search"
+                                                    id="form1"
+                                                    class="form-control"
+                                                  />
+                                                </div>
+                                            </ul> -->
+                                        </div>
+                                     </div>
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btnSubmit">Assessment</button>
+                                          </div>
+                                     </div>
+
+                                </div>
+
+                                <br/>
+                    
+                                
+                              </form>
+                        </div>         
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+      <section *ngIf="reportDetails && reportDetails.length > 0">
+    
+        <div class="row justify-content-end">
+            <div class="col-md-1">
+                <button  (click)="exportToPDF()" class="btn btn-icon export-btn" title="Download PDF">
+                    <i class="fas fa-file-pdf fa-lg pdf-icon"></i>
+                  </button>
+            </div>
+            <div class="col-md-1">
+                <button  (click)="exportToExcel()" class="btn btn-icon export-btn" title="Download Excel">
+                    <i class="fas fa-file-excel fa-lg excel-icon"></i>
+                  </button>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-12">
+             <table class="table table-bordered table-hover">
+               <caption></caption>
+               <thead>
+                 <tr>
+                   <th>Sno</th>
+                   <th>Employee Code</th>
+                   <th>First Name</th>
+                   <th>Last Name</th>
+                   <th>Email</th>
+                   <th>Mobile</th>
+                   <th>Batch Name</th>
+                   <th>Technology Name</th>
+                   <th>Full Mark</th>
+                   <th>Secured Mark</th>
+                 
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr *ngFor="let jse of reportDetails ;let i = index">
+                   <td>{{ i + 1 }}</td>
+                   <td>{{ jse.employeeCode }}</td>
+                   <td>{{ jse.firstName}}</td>
+                   <td>{{jse.lastName}}</td>
+                   <td>{{jse.email}}</td>
+                   <td>{{jse.mobile}}</td>
+                   <td>{{jse.batchName}}</td>
+                   <td>{{jse.technologyName}}</td>
+                   <td>{{ jse.fullMark}}</td>
+                   <td>{{jse.securedMark}}</td>
+                            
+                  </tr>
+               </tbody>
+             </table>
+            </div>
+        </div>
+      </section>
+
+  
+
+  
+
+
+

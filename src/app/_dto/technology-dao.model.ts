@@ -11,9 +11,9 @@ export interface TechnologyDao {
 }
 
 export interface Technology {
+    id:number|0;
     isActive: boolean;
     loggedInUser: string|null;
-    technologyCode: string;
     technologyName: string;
   }
 

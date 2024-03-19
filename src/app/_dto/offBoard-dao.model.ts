@@ -1,0 +1,22 @@
+export interface OffBoardJse {
+    id:number;
+    leavingReason:string;
+    dol:Date;
+    employeeCode:string;
+    firstName:string;
+    middleName:string;
+    lastName:string;
+    email:string;
+    empFullName:string;
+    mobile:string;
+    batchId:number;
+    batchName:string;
+    technologyId:number;
+    technologyName:string;
+    isActive:boolean;
+    isDeleted:boolean;
+    createdOn:Date;
+    modifiedOn:Date;
+    createdBy:string;
+    modifiedBy:string;
+}

@@ -143,7 +143,7 @@ UpdatMapRaInternDetails(){
             text: 'Map RA Jse user details updated successfully!',
           });
 
-          this.router.navigate(['mapra']);
+          this.router.navigate(['map/mapra']);
         }else{
           Swal.fire({
             icon: 'error', 

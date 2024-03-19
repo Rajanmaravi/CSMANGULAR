@@ -11,6 +11,7 @@ export class LogoutComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    debugger;
     this.authService.logout();
     this.router.navigate(['/login']);
   }

@@ -1,0 +1,102 @@
+<div class="hold-transition login-page bg-gray">
+    <div class="login-box">
+      <!-- /.login-logo -->
+      <div class="card card-outline card-primary OtpBody">
+        <div class="card-header text-center text-success text-bold">
+             
+          WELCOME TO JSE FEEDBACK SYSTEM
+        </div>
+        <div class="card-body">
+          <p class="login-box-msg text-bold">OTP FOR PASSWORD</p>
+          
+          <div>
+            <form (ngSubmit)="otpByUseName()" [formGroup]="otpEmpCodeForm">
+           
+                <div class="input-group mb-3">          
+                  <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="User ID" required>                         
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-envelope"></span>
+                    </div>
+                  </div>  
+                          
+                </div>
+                <span *ngIf="otpEmpCodeForm.get('userName').hasError('required') && 
+                (otpEmpCodeForm.get('userName').touched || otpEmpCodeForm.get('userName').dirty)" class="error-message">
+                * User ID is required.
+              </span> 
+    
+                <div class="row">             
+                  <!-- /.col -->
+                  <div class="col-5">
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="!otpEmpCodeForm.valid">OTP Request</button>
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </form>
+          </div><br/>
+          <p class="login-box-msg text-bold">-----------------------OR-----------------------</p>
+          <div>
+            <form (ngSubmit)="otpByEmail()" [formGroup]="otpEmailForm">
+           
+                <div class="input-group mb-3">          
+                  <input type="text" class="form-control" id="email" formControlName="email" placeholder="Email ID" required>                         
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-envelope"></span>
+                    </div>
+                  </div>  
+                          
+                </div>
+                <span *ngIf="otpEmailForm.get('email').hasError('required') && 
+                (otpEmailForm.get('email').touched || otpEmailForm.get('email').dirty)" class="error-message">
+                * Email ID is required.
+              </span> 
+    
+                <div class="row">             
+                  <!-- /.col -->
+                  <div class="col-5">
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="!otpEmailForm.valid">OTP Request</button>
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </form>
+          </div>    
+          <br/>
+          <div>
+            <form (ngSubmit)="validateOtp()" [formGroup]="otpValidateForm">
+           
+                <div class="input-group mb-3">          
+                  <input type="text" class="form-control" id="otp" formControlName="otp" placeholder="OTP" required>                         
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-envelope"></span>
+                    </div>
+                  </div>  
+                </div>
+                   <span *ngIf="otpValidateForm.get('otp').hasError('required') && 
+                        (otpValidateForm.get('otp').touched || otpValidateForm.get('otp').dirty)" 
+                         class="error-message">
+                        * OTP is required.
+                    </span> 
+    
+                <div class="row">             
+                  <!-- /.col -->
+                  <div class="col-5">
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="!otpValidateForm.valid">Submit OTP</button>
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </form>
+          </div>    
+       
+       
+        </div>
+
+        
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+    

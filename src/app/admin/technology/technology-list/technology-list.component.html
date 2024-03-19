@@ -39,20 +39,20 @@
           <tr>
             <th>Sno</th>
             <th>Technology Name</th>
-            <th>Active</th>
-            <th>Technology Code</th>
-            <th>Action</th>
+            <th class="tblCTextAline">Active</th>
+            <!-- <th>Technology Code</th> -->
+            <th class="tblCTextAline">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let tech of technology | filterpipe: searchText:['technologyName', 'technologyCode']; let i = index">
+          <tr *ngFor="let tech of technology | filterpipe: searchText:['technologyName']; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ tech.technologyName }}</td>
-            <td>{{ tech.isActive ? 'Active' : 'Inactive' }}</td>
-            <td>{{ tech.technologyCode }}</td>
-            <td>
-              <button class="btn btn-sm" title="edit" (click)="updateTechnology(tech.id)"><i class="fa fa-edit text-info"></i></button>
-              <button class="btn btn-sm" title="delete" (click)="deleteTechnology(tech)" ><i class="fa fa-trash text-danger"></i></button>
+            <td class="tblCTextAline">{{ tech.isActive ? 'Active' : 'Inactive' }}</td>
+            <!-- <td>{{ tech.technologyCode }}</td> -->
+            <td class="tblCTextAline">
+              <button class="btn btn-sm" [disabled]="true" title="edit" (click)="updateTechnology(tech.id)"><i class="fa fa-edit text-info"></i></button>
+              <button class="btn btn-sm"  title="delete" (click)="deleteTechnology(tech)" ><i class="fa fa-trash text-danger"></i></button>
             </td>
           </tr>
         </tbody>

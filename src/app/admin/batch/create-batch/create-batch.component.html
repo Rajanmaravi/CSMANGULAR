@@ -33,9 +33,10 @@
                 <div class="form-group">
                   <label for="year">Year:</label>
                   <select id="year" formControlName="year" class="form-control" required>
-                    <option [value]="2023">2023</option>
-                    <option [value]="2024">2024</option>
-                    <option [value]="2025">2025</option>
+                    <!-- <option [value]="2023">FY-23-24</option>
+                    <option [value]="2024">FY-24-25</option>
+                    <option [value]="2025">FY-25-26</option> -->
+                    <option *ngFor="let year of fiscalYears" [value]="year.value">{{ year.label }}</option>
                   </select>
                   <div *ngIf="createBatchForm.get('year').hasError('required') && 
                        (createBatchForm.get('year').touched || createBatchForm.get('year').dirty)" class="error-message">

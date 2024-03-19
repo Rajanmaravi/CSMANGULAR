@@ -10,6 +10,8 @@ import { JseUserModule } from './admin/jse-user/jse-user.module';
 import { FeedbackModule } from './admin/feedback/feedback.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AdminModule } from './admin/admin.module';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { QuillModule } from 'ngx-quill';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { AdminModule } from './admin/admin.module';
     ReactiveFormsModule,
     AuthModule,
     AdminModule,
-    NgMultiSelectDropDownModule.forRoot()
+    CKEditorModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

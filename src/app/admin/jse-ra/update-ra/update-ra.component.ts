@@ -57,7 +57,7 @@ export class UpdateRaComponent {
             text: 'Reporting Authority updated successfully!',
           });
 
-          this.router.navigate(['jsera']);
+          this.router.navigate(['map/jsera']);
           
         },
         error: (error: any) => {
